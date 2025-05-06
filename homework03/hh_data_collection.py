@@ -16,7 +16,6 @@ def get_vacancies(pages, tag):
     url = 'https://api.hh.ru/vacancies'
     headers = {"User-Agent": "example@yandex.ru"} 
     # put your code here
-    
     pass
 
 

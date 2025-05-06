@@ -20,10 +20,12 @@ def preprocess_text(text: str) -> str:
     pass
 
 
-def get_keywords(df):
+def get_keywords(df, n_keywords=5):
     """
     Принимает на вход датафрейм с вакансиями и полем обработанных навыков.
-    Возвращает этот же датафрейм с новым столбцом с ключевыми словами.
+    Возвращает датафрейм, состоящий из двух столбцов: название вакансии и столбец с ключевыми словами.
+    df: входной датафрейм
+    n_keywords: число ключевых слов, которое надо извлечь
     """
     vectorizer = TfidfVectorizer()
     # put your code here
@@ -34,6 +36,7 @@ def create_network(df):
     """
     Принимает на вход датафрейм с вакансиями и ключевыми словами.
     Возвращает список кортежей из пар вакансий и количества их общих ключевых слов.
+    Вид кортежа внутри списка ожидается такой: (ребро1, ребро2, {'weight': вес_ребра})
     """
     pass
 
@@ -42,10 +45,8 @@ def plot_network(vac_edges):
     """
     Строит визуализацию графа с помощью matplotlib.
     """
-    vac_edges = [tuple(sorted(edge)) for edge in vac_edges]
-    weighted_edges = [(edge[0], edge[1], {"weight": vac_edges.count(edge)}) for edge in set(vac_edges)]
     G = nx.Graph()
-    G.add_edges_from(weighted_edges)
+    G.add_edges_from(vac_edges)
     nx.draw(G, with_labels=False, font_weight='bold', node_size=30)
     plt.show()
 
